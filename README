@@ -1,1 +1,2 @@
-README
+Example Code
+Iterate over a loop and perfom some async actions, using promises to do this
