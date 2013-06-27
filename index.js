@@ -13,11 +13,13 @@ var list = ['This', 'is', 'an', 'array'];
 var letterscount = 0;
 var sentence = "";
 
+//Aync countLetterFunc 
 function countLetters(word, callback){
   var letters = word.length;
   callback(null, letters);
 }
 
+//Async getWord Func
 function getWord(word, callback){
   callback(null, word + " ");
 }
@@ -35,10 +37,13 @@ function funcPromise(word){
 var result = {letters: 0, sentence: ""};
 
 function process(callback){
+
+  //Promise Chain
   var promise = Q.fcall(function(){return [0, ""]});
 
   //Function created to be used in the loop
   var func = function(word){
+    //Chaining Promises
     promise = promise.then(function(data){ 
       result.letters += data[0];
       result.sentence += data[1];
@@ -49,6 +54,7 @@ function process(callback){
   for(var i = 0; i< list.length; i++){
     func(list[i]);
   }
+
   promise.done(function(data){
     result.letters += data[0]; //Calculate the result of the last promise
     result.sentence += data[1];
